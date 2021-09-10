@@ -1,0 +1,65 @@
+@import '_variables';
+@import '_mixins';
+
+.to-do-body {
+    background-color: $dark-red;
+    height: 100vh;
+  }
+   
+.header {
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+    color: $orange;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: "Lobster", cursive;
+}
+  
+.tasks-container {
+    background-color: $pink;
+    border-radius: 25px;
+    margin: 30px;
+    padding: 30px;
+    min-height: 70vh;
+}
+//top portion of tasks container  
+.form-group {
+    text-align: center;
+    min-height: 10vh;
+    font-size: large;
+    color: $light-pink;
+    font-family: "Poiret One", cursive;
+    font-weight: bold;
+    font-size: xx-large;
+    //not working 
+    padding: 5px;
+    border-style: solid;
+    border-color: $dark-red;
+    border-radius: 25px;
+}
+
+.to-do-label{
+//border: 2px solid red;
+    border-style: solid;
+}
+//input vallue "insert task"
+.form-control {
+    width:50%
+}
+  
+.btn.btn-secondary {
+    background-color:$dark-red;
+}
+  
+.footer {
+    color: $light-pink;
+    text-align: center;
+}
+  
+  /*# sourceMappingURL=app.css.map */
+  
+

@@ -1,0 +1,51 @@
+.to-do-body {
+    background-color: #4f000b;
+    height: 100vh;
+  }
+   
+  .header {
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+    color: #ff9b54;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: "Lobster", cursive;
+  }
+  
+  .tasks-container {
+    background-color: #ce4257;
+    border-radius: 25px;
+    margin: 30px;
+    padding: 30px;
+    min-height: 70vh;
+  }
+  
+  .form-group {
+    text-align: center;
+    min-height: 10vh;
+    font-size: large;
+    color: #ffdac6;
+    font-family: "Poiret One", cursive;
+    font-weight: bold;
+    font-size: xx-large;
+  }
+  
+  .form-control {
+    width: 70%;
+  }
+  
+  .btn.btn-secondary {
+    background-color: #4f000b;
+  }
+  
+  .footer {
+    color: #ffdac6;
+    text-align: center;
+  }
+  
+  /*# sourceMappingURL=app.css.map */
+  
