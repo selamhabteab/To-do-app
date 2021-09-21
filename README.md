@@ -15,3 +15,7 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 Step 3: 
+
+Resources:
+- When adding the edit functionality to a list item, I got help from 
+https://www.robinwieruch.de/react-update-item-in-list

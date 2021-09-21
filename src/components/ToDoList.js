@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Button, ListGroup, ListGroupItem } from 'reactstrap';
-import ToDo from './ToDo';
+import NewToDo from './NewToDo';
+// import EditToDo from './EditToDo';
 
 
 class ToDoList extends Component{
@@ -8,20 +9,35 @@ class ToDoList extends Component{
         super(props)
         this.state = {
           task: "",
+          newTask: "",
           list: [],
           disabled: false,
           popoverOpen: false,
-          //Disabled Button. By default, the Button is enabled. To disable it, set the disabled property to true
+          currentIndex: null,
+          count: 0
         }
     }
-    
+
+    createTask = (e) => {
+        this.setState({ 
+            newTask: e.target.value,
+            popoverOpen: false,
+            disabled: false
+        })
+      }
+
     updateTask = (e) => {
-        this.setState({ task: e.target.value })
-        console.log(typeof this.state.task, this.state.task.length);
+        this.setState({ 
+            task: e.target.value,
+            popoverOpen: false,
+            disabled: false
+        })
       }
     
-    submitTask=(event)=> {
-        if (this.state.task.length=== 0){
+    submitTask= event => {
+        event.preventDefault();
+        if (!this.state.newTask.trim()){
+            //fix double spaces 
             this.setState({
                 disabled: true,
                 popoverOpen: true
@@ -29,64 +45,87 @@ class ToDoList extends Component{
 
         } else {
             this.setState({
-                list: [this.state.task,...this.state.list], 
-                task: "",
+                list: [this.state.newTask,...this.state.list], 
+                newTask: "",
                 popoverOpen: false
             }) 
         }
-            event.preventDefault();
     }
 
+    editTask=(item, index)=> {
+        console.log("index: ", index); 
+        console.log("item: ", item); 
+        console.log("list [index]: ", this.state.list[index]);
+        const newList = this.state.list[index] = this.state.task
+        this.setState({
+            currentIndex: this.state.currentIndex === index ? null:index,
+            list: !this.state.currentIndex ? this.state.list:this.state.list,
+            task:""
+        })
+        console.log("newList: ", newList);
+    }
+    
     removeTask = (index)=>{
         this.setState({list: [...this.state.list.slice(0,index), ...this.state.list.slice(index+1)]})
     }
 
+    countingUp =()=>{
+        this.setState({count: this.state.count+1})
+    } 
+
+    // useEffect(() => {
+    //     console.log("useEffect applied");
+    // });
+
     render(){
-        const { task, list, disabled, popoverOpen } = this.state
-        let color1 = "odd"
-        let color2 = "even"
+        const { newTask, task, list, disabled, popoverOpen, currentIndex, count} = this.state
         return (
             <div className="tasks-container">
                 <ListGroup className="list-group">
-                <ToDo 
-                task = { task }
-                updateTask = {this.updateTask}
+                <NewToDo 
+                newTask = { newTask }
+                createTask = {this.createTask}
                 submitTask = {this.submitTask}
                 disabled = {disabled}
                 popoverOpen = {popoverOpen}
                 />
+                {/* <EditToDo /> */}
                 {list.map((item, index)=> {
-                    let listColor ;
-                       if (index % 2 ===0) { 
-                           listColor = color1;
-                       } else {
-                        listColor = color2;
-                       }
-                    const listItem = 
-                    <ListGroupItem key={index} className={`list-group-item ${listColor} `}>
-                        {item}
-                        <Button className="delete" size="sm" type="submit"  
+                    return (
+
+                    <ListGroupItem 
+                        key= {index} 
+                        className={`list-group-item ${index % 2 ===0 ? "even": "odd"} `}
+                    >
+                        { currentIndex !== index && <div>{item}</div> }
+                        {currentIndex === index && <input 
+                        className="edit-item"
+                        onChange = {this.updateTask}
+                        value= {task}
+                        type="text"
+                        />}
+                        
+                        <Button className="edit" size="sm" type="button"
+                        onClick= {()=>this.editTask(item, index)}>
+                            { currentIndex !== index ? "edit":"save" }
+                        </Button>
+                        
+                        <Button className="delete" size="sm" type="button"
                         onClick= {()=>this.removeTask(index)}>
                             Delete
                         </Button>
                     </ListGroupItem>
-                    return listItem
+                    )
                 }
                 )}
-
                 </ListGroup>
+                
+                <Button className="counting" size="lg" type="button" onClick= {this.countingUp}>
+                    Click the button to count up: {count}
+                </Button>
             </div>
         )
     }
 }
 
 export default ToDoList;
-// {list.map((item, index)=> 
-//     <ListGroupItem key={index} className="list-group-item">
-//         { item }
-//         <Button className="delete" size="sm" type="submit"  
-//         onClick= {()=>this.removeTask(index)}>
-//             Delete
-//         </Button>
-//     </ListGroupItem>
-// )}

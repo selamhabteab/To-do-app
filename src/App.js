@@ -10,7 +10,8 @@ class App extends Component{
     return (
       <div className = "to-do-body">
         <Header />
-        <ToDoList />
+        <ToDoList /> 
+        {/* nested component: NewToDo && EditToDo */}
         <Footer />
       </div>
       )

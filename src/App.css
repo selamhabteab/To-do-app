@@ -101,10 +101,24 @@
 
 .list-group-item.list-group-item.even {
   background-color: #cc5567;
+  color: #ffdac6;
 }
+
+/* .list-group-item.list-group-item.edit-mode {
+  background-color: white;
+  color:#4f000b
+} */
 
 /* delete button */
 .delete.btn.btn-secondary {
+  background-color: #720026;
+  border-color: #4f000b;
+  color:papayawhip;
+  float: right;
+}
+
+/* edit button */
+.edit.btn.btn-secondary {
   background-color: #720026;
   border-color: #4f000b;
   color:papayawhip;

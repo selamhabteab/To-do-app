@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-class ToDo extends Component{
+class NewToDo extends Component{
 
 
     render(){
-
+        const { createTask, newTask, submitTask, popoverOpen } = this.props
         return (
             <div>
             <Form>
                 <FormGroup className= "form-group">
-
                     <Label className= "to-do-label">
                         Tasks to be Completed: 
                     </Label>
@@ -18,17 +17,18 @@ class ToDo extends Component{
                     <Input 
                         className="form-control"
                         placeholder= "Insert task"
-                        onChange = { this.props.updateTask }
-                        value={this.props.task}
+                        onChange = { createTask }
+                        value={newTask}
+                        type="text"
                         // disabled = {this.props.disabled}
-                    />
+                    /> 
 
                     {/* We dont add the disabled property in the button nor the input bc it'll stick. */}
-                    <Button type="submit" size="lg" onClick={this.props.submitTask} id="submit">
+                    <Button type="submit" size="lg" onClick={submitTask} id="submit">
                         Submit
                     </Button>
                     
-                    <Popover placement="bottom" isOpen={this.props.popoverOpen}
+                    <Popover placement="bottom" isOpen={popoverOpen}
                     target="submit">
                     <PopoverHeader>
                         Oops!
@@ -44,4 +44,4 @@ class ToDo extends Component{
     }
 }
 
-export default ToDo;
+export default NewToDo;
