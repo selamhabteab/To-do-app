@@ -111,6 +111,7 @@
 
 /* delete button */
 .delete.btn.btn-secondary {
+  display: inline-block;
   background-color: #720026;
   border-color: #4f000b;
   color:papayawhip;
@@ -119,10 +120,17 @@
 
 /* edit button */
 .edit.btn.btn-secondary {
+  display: inline-block;
   background-color: #720026;
   border-color: #4f000b;
   color:papayawhip;
   float: right;
+}
+
+.edit-item {
+  border-radius: 5px;
+  display: inline-block;
+  width: 80%;
 }
 
 .footer {

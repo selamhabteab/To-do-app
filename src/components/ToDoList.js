@@ -13,7 +13,7 @@ class ToDoList extends Component{
           list: [],
           disabled: false,
           popoverOpen: false,
-          currentIndex: null,
+          currentEditableIndex: null,
           count: 0
         }
     }
@@ -36,7 +36,7 @@ class ToDoList extends Component{
     
     submitTask= event => {
         event.preventDefault();
-        if (!this.state.newTask.trim()){
+        if (!this.state.newTask.trim()){ // 
             //fix double spaces 
             this.setState({
                 disabled: true,
@@ -56,13 +56,13 @@ class ToDoList extends Component{
         console.log("index: ", index); 
         console.log("item: ", item); 
         console.log("list [index]: ", this.state.list[index]);
-        const newList = this.state.list[index] = this.state.task
+        // const newList = this.state.list[index] = this.state.task
         this.setState({
-            currentIndex: this.state.currentIndex === index ? null:index,
-            list: !this.state.currentIndex ? this.state.list:this.state.list,
+            currentEditableIndex: this.state.currentEditableIndex === index ? null:index,
+            list: !this.state.currentEditableIndex ? this.state.list:this.state.list,
             task:""
         })
-        console.log("newList: ", newList);
+        // console.log("newList: ", newList);
     }
     
     removeTask = (index)=>{
@@ -78,7 +78,7 @@ class ToDoList extends Component{
     // });
 
     render(){
-        const { newTask, task, list, disabled, popoverOpen, currentIndex, count} = this.state
+        const { newTask, task, list, disabled, popoverOpen, currentEditableIndex, count} = this.state
         return (
             <div className="tasks-container">
                 <ListGroup className="list-group">
@@ -97,8 +97,8 @@ class ToDoList extends Component{
                         key= {index} 
                         className={`list-group-item ${index % 2 ===0 ? "even": "odd"} `}
                     >
-                        { currentIndex !== index && <div>{item}</div> }
-                        {currentIndex === index && <input 
+                        { currentEditableIndex !== index && <div>{item}</div> }
+                        {currentEditableIndex === index && <input 
                         className="edit-item"
                         onChange = {this.updateTask}
                         value= {task}
@@ -107,7 +107,7 @@ class ToDoList extends Component{
                         
                         <Button className="edit" size="sm" type="button"
                         onClick= {()=>this.editTask(item, index)}>
-                            { currentIndex !== index ? "edit":"save" }
+                            { currentEditableIndex !== index ? "edit":"save" }
                         </Button>
                         
                         <Button className="delete" size="sm" type="button"

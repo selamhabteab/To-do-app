@@ -5,7 +5,7 @@ class NewToDo extends Component{
 
 
     render(){
-        const { createTask, newTask, submitTask, popoverOpen } = this.props
+        const { createTask, newTask, submitNewTask, popoverOpen } = this.props
         return (
             <div>
             <Form>
@@ -24,7 +24,7 @@ class NewToDo extends Component{
                     /> 
 
                     {/* We dont add the disabled property in the button nor the input bc it'll stick. */}
-                    <Button type="submit" size="lg" onClick={submitTask} id="submit">
+                    <Button type="submit" size="lg" onClick={submitNewTask} id="submit">
                         Submit
                     </Button>
                     
