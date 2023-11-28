@@ -90,7 +90,7 @@ const ToDoList = () => {
                             />}
                     <Button className="edit" size="sm" type="button"
                         onClick= {currentIndex !== index ? ()=>editTask(item, index) : ()=>saveTask(index)}>
-                            { currentIndex !== index ? "edit":"save" }
+                            { currentIndex !== index ? "Edit":"Save" }
                     </Button>
                     <Button className="delete" size="sm" type="button"
                     onClick= {()=>removeTask(index)}>
